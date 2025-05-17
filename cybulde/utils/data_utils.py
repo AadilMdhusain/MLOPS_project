@@ -1,6 +1,8 @@
 from pathlib import Path
 
 from cybulde.utils.utils import get_logger, run_shell_command
+from subprocess import CalledProcessError
+
 
 DATA_UTILS_LOGGER = get_logger(Path(__file__).name)
 
@@ -28,7 +30,7 @@ def initialize_dvc_storage(dvc_remote_name: str, dvc_remote_url: str) -> None:
         DATA_UTILS_LOGGER.info("DVC storage was already initialized...")
 
 def commit_to_dvc(dvc_raw_data_folder: str, dvc_remote_name: str) -> None:
-    current_version = ""  
+    current_version = run_shell_command("git tag --list | sort -t v -k 2 -g | tail -1 | sed 's/v//'").strip() 
     if not current_version:
         current_version = "0"  
     next_version = f"{int(current_version)+1}"
