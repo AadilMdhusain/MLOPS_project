@@ -1,7 +1,7 @@
 from pathlib import Path  # 'pathlib.Path' imported but unused
 
-from cybulde.config.schemas.config_schema import Config
-from cybulde.utils.imports import get_config
+from cybulde.config_schemas.config_schema import Config
+from cybulde.utils.config_utils import get_config
 from cybulde.utils.data_utils import initialize_dvc
 from cybulde.utils.utils import get_logger  # imported but unused
 
